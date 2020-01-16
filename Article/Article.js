@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Testing',
+    date: 'Abrakadbra',
+    firstParagraph: 'Line 1',
+
+    secondParagraph: 'Line 2',
+
+    thirdParagraph: 'Line 3'
   }
 ];
 
@@ -103,6 +112,7 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
+
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
@@ -112,3 +122,45 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createComponent(comps) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const articleButton = document.createElement('span');
+
+
+article.append(articleTitle);
+article.append(articleDate);
+article.append(articleButton);
+article.append(p1);
+article.append(p2);
+article.append(p3);
+
+
+article.classList.add('article');
+articleDate.classList.add('date');
+articleButton.classList.add('expandButton');
+
+articleTitle.textContent = comps.title;
+articleDate.textContent = comps.date;
+p1.textContent = comps.firstParagraph;
+p2.textContent = comps.secondParagraph;
+p3.textContent = comps.thirdParagraph;
+articleButton.textContent = '\u25bc';
+
+articleButton.addEventListener('click', (e) => {
+  article.classList.toggle('article-open');
+});
+
+return article;
+}
+
+const articles = document.querySelector('.articles')
+
+data.forEach(data => {
+articles.append(createComponent(data));
+});
